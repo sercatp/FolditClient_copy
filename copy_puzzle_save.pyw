@@ -3,6 +3,10 @@ import shutil
 import tkinter as tk
 from tkinter import messagebox
 
+#if your Foldit clients are like "C:\Games\Foldit1\", "C:\\Games\Foldit2\", "C:\\Games\Foldit3\"
+#then point C:\\Games\\Foldit as the foldit_path. The number will be added as the suffix from the input.
+foldit_path = "C:\\Games\\Foldit"
+
 def copy_latest_subdir(src_folder, dest_folder):
     # Get list of subdirectories sorted by modification time
     subdirs = sorted((os.path.join(src_folder, d) for d in os.listdir(src_folder) if os.path.isdir(os.path.join(src_folder, d))), key=os.path.getmtime, reverse=True)
@@ -23,18 +27,18 @@ def copy_latest_subdir(src_folder, dest_folder):
     messagebox.showinfo("Success", f"Copied {latest_subdir} to {dest_path}")
     window.destroy()
 
-def on_first_entry_key(event):
-    if len(src_entry.get()) >= 1:
-        if not event.keysym.isdigit():  # Check if the entered key is a digit
-            src_entry.delete(0, tk.END)  # Clear the entry field if it's not a digit
-        dest_entry.focus_set()
+##def on_first_entry_key(event):
+##    if len(src_entry.get()) >= 1:
+##        if not event.keysym.isdigit():  # Check if the entered key is a digit
+##            src_entry.delete(0, tk.END)  # Clear the entry field if it's not a digit
+##        dest_entry.focus_set()
 
 def on_copy_button_click(event=None):
     src_folder_input = src_entry.get()
     dest_folder_input = dest_entry.get()
 
-    src_folder = f"C:\\Games\\Foldit{src_folder_input}\\puzzles\\"
-    dest_folder = f"C:\\Games\\Foldit{dest_folder_input}\\puzzles\\"
+    src_folder = f"{foldit_path}{src_folder_input}\\puzzles\\"
+    dest_folder = f"{foldit_path}{dest_folder_input}\\puzzles\\"
 
     # Check if source and destination folders exist
     if not os.path.exists(src_folder):
@@ -65,7 +69,10 @@ dest_entry.grid(row=1, column=1, padx=5, pady=5)
 
 def on_src_entry_change():
     if len(src_entry.get()) == 1:
-        dest_entry.focus_set()
+        True
+        #uncomment if your first parameter has only one digit (like FolditX and not FolditXX),
+        #it switches the focus to the next field after the first char is typed
+        #dest_entry.focus_set() 
 
 # Copy button
 copy_button = tk.Button(window, text="Copy Latest Subdirectory", command=on_copy_button_click)
