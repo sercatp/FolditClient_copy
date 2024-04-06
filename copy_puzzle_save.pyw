@@ -32,7 +32,6 @@ def on_copy_button_click(event=None):
     dest_folder_input = dest_entry.get()
 
     src_folder = f"{foldit_path}{src_folder_input}\\puzzles\\"
-    src_folder = src_folder.replace('Foldit1\\', 'Foldit\\')
     dest_folder = f"{foldit_path}{dest_folder_input}\\puzzles\\"
 
     # Check if source and destination folders exist
