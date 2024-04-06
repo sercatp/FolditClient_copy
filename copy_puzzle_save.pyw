@@ -27,17 +27,12 @@ def copy_latest_subdir(src_folder, dest_folder):
     messagebox.showinfo("Success", f"Copied {latest_subdir} to {dest_path}")
     window.destroy()
 
-##def on_first_entry_key(event):
-##    if len(src_entry.get()) >= 1:
-##        if not event.keysym.isdigit():  # Check if the entered key is a digit
-##            src_entry.delete(0, tk.END)  # Clear the entry field if it's not a digit
-##        dest_entry.focus_set()
-
 def on_copy_button_click(event=None):
     src_folder_input = src_entry.get()
     dest_folder_input = dest_entry.get()
 
     src_folder = f"{foldit_path}{src_folder_input}\\puzzles\\"
+    src_folder = src_folder.replace('Foldit1\\', 'Foldit\\')
     dest_folder = f"{foldit_path}{dest_folder_input}\\puzzles\\"
 
     # Check if source and destination folders exist
