@@ -6,6 +6,7 @@ How it works:
 2) It copies the latest modified subdir (i.e. the currently active puzzle in client) from 'C:\Games\Foldit**2**\puzzles\'  to the destination folder 'C:\Games\Foldit**6**\puzzle\' replacing all the files if they exist.
    
 ![screenshot](screenshot.png)
+
 ![screenshot](screenshot2.png)
 
 Just change your Foldit clients paths names. By default it is:
